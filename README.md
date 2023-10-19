@@ -1,15 +1,11 @@
-# Blank Template
+# OAuth Provider Template
 
-This is a blank template used to build out automations using the Slack CLI.
+This is a Slack function with OAuth Provider template used to build out automations using the Slack CLI.
 
 **Guide Outline**:
 
 - [Setup](#setup)
   - [Install the Slack CLI](#install-the-slack-cli)
-  - [Clone the Template](#clone-the-template)
-- [Running Your Project Locally](#running-your-project-locally)
-- [Creating Triggers](#creating-triggers)
-- [Datastores](#datastores)
 - [Testing](#testing)
 - [Deploying Your App](#deploying-your-app)
 - [Viewing Activity Logs](#viewing-activity-logs)
@@ -31,93 +27,22 @@ To use this template, you need to install and configure the Slack CLI.
 Step-by-step instructions can be found in our
 [Quickstart Guide](https://api.slack.com/automation/quickstart).
 
-### Clone the Template
+## Airtable OAuth 
 
-Start by cloning this repository:
+Create your cliend_id and OAuth information in Airtable.
+Take the information from Airtable create an env variable CLIENT_ID
+This will be used in the DefineOAuth2Provider function in the manifest.ts
 
-```zsh
-# Clone this project onto your machine
-$ slack create my-app -t slack-samples/deno-blank-template
-
-# Change into the project directory
-$ cd my-app
-```
-
-## Running Your Project Locally
-
-While building your app, you can see your changes appear in your workspace in
-real-time with `slack run`. You'll know an app is the development version if the
-name has the string `(local)` appended.
-
+If you've generated a client secret for your Airtable integration now is the time to add it through the Slack CLI
 ```zsh
 # Run app locally
-$ slack run
+$ slack external-auth add-secret
 
 Connected, awaiting events
 ```
 
 To stop running locally, press `<CTRL> + C` to end the process.
 
-## Creating Triggers
-
-[Triggers](https://api.slack.com/automation/triggers) are what cause workflows
-to run. These triggers can be invoked by a user, or automatically as a response
-to an event within Slack.
-
-When you `run` or `deploy` your project for the first time, the CLI will prompt
-you to create a trigger if one is found in the `triggers/` directory. For any
-subsequent triggers added to the application, each must be
-[manually added using the `trigger create` command](#manual-trigger-creation).
-
-When creating triggers, you must select the workspace and environment that you'd
-like to create the trigger in. Each workspace can have a local development
-version (denoted by `(local)`), as well as a deployed version. _Triggers created
-in a local environment will only be available to use when running the
-application locally._
-
-### Link Triggers
-
-A [link trigger](https://api.slack.com/automation/triggers/link) is a type of
-trigger that generates a **Shortcut URL** which, when posted in a channel or
-added as a bookmark, becomes a link. When clicked, the link trigger will run the
-associated workflow.
-
-Link triggers are _unique to each installed version of your app_. This means
-that Shortcut URLs will be different across each workspace, as well as between
-[locally run](#running-your-project-locally) and
-[deployed apps](#deploying-your-app).
-
-With link triggers, after selecting a workspace and environment, the output
-provided will include a Shortcut URL. Copy and paste this URL into a channel as
-a message, or add it as a bookmark in a channel of the workspace you selected.
-Interacting with this link will run the associated workflow.
-
-**Note: triggers won't run the workflow unless the app is either running locally
-or deployed!**
-
-### Manual Trigger Creation
-
-To manually create a trigger, use the following command:
-
-```zsh
-$ slack trigger create --trigger-def triggers/<YOUR_TRIGGER_FILE>.ts
-```
-
-## Datastores
-
-For storing data related to your app, datastores offer secure storage on Slack
-infrastructure. The use of a datastore requires the
-`datastore:write`/`datastore:read` scopes to be present in your manifest.
-
-## Testing
-
-Test filenames should be suffixed with `_test`.
-
-Run all tests with `deno test`:
-
-```zsh
-$ deno test
-```
 
 ## Deploying Your App
 
@@ -179,7 +104,7 @@ continuing to the next step.
 ### `manifest.ts`
 
 The [app manifest](https://api.slack.com/automation/manifest) contains the app's
-configuration. This file defines attributes like app name and description.
+configuration. This file defines attributes like app name and description, it is where we have added the new OAuth provider information.
 
 ### `slack.json`
 
@@ -193,3 +118,5 @@ To learn more about developing automations on Slack, visit the following:
 - [Automation Overview](https://api.slack.com/automation)
 - [CLI Quick Reference](https://api.slack.com/automation/cli/quick-reference)
 - [Samples and Templates](https://api.slack.com/automation/samples)
+- []()
+- [Register Airtable Integration](https://airtable.com/create/oauth)
