@@ -6,8 +6,9 @@ This is a Slack function with OAuth Provider template used to build out automati
 
 - [Setup](#setup)
   - [Install the Slack CLI](#install-the-slack-cli)
-- [Testing](#testing)
+- [Airtable OAuth](#airtable-oauth)
 - [Deploying Your App](#deploying-your-app)
+- [Add Airtable Authentication & token](#add-airtable-authentication-&-token)
 - [Viewing Activity Logs](#viewing-activity-logs)
 - [Project Structure](#project-structure)
 - [Resources](#resources)
@@ -35,14 +36,9 @@ This will be used in the DefineOAuth2Provider function in the manifest.ts
 
 If you've generated a client secret for your Airtable integration now is the time to add it through the Slack CLI
 ```zsh
-# Run app locally
+# Set client secret for an app and provider
 $ slack external-auth add-secret
-
-Connected, awaiting events
 ```
-
-To stop running locally, press `<CTRL> + C` to end the process.
-
 
 ## Deploying Your App
 
@@ -58,13 +54,23 @@ When deploying for the first time, you'll be prompted to
 app. When that trigger is invoked, the workflow should run just as it did when
 developing locally (but without requiring your server to be running).
 
+## Add Airtable Authentication & token
+
+Once your app is deployed you will want to associate the OAuth provider by
+```zsh
+# Initiate OAuth2 flow for a selected provider
+$ slack external-auth add
+```
+Here you will select the Workspace | Organisation, the app environment (if you have followed the previous steps it will be deployed)
+and hit enter to finalise Authentication & Token creation via the browser Flow
+
 ## Viewing Activity Logs
 
-Activity logs of your application can be viewed live and as they occur with the
+Activity logs of your application can be viewed with the
 following command:
 
 ```zsh
-$ slack activity --tail
+$ slack activity
 ```
 
 ## Project Structure
@@ -118,5 +124,6 @@ To learn more about developing automations on Slack, visit the following:
 - [Automation Overview](https://api.slack.com/automation)
 - [CLI Quick Reference](https://api.slack.com/automation/cli/quick-reference)
 - [Samples and Templates](https://api.slack.com/automation/samples)
-- []()
+- [Slack External Authentication](https://api.slack.com/automation/external-auth)
 - [Register Airtable Integration](https://airtable.com/create/oauth)
+- [OAuth Reference Airtable](https://airtable.com/developers/web/api/oauth-reference)
