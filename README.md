@@ -8,7 +8,7 @@ This is a Slack function with OAuth Provider template used to build out automati
   - [Install the Slack CLI](#install-the-slack-cli)
 - [Airtable OAuth](#airtable-oauth)
 - [Deploying Your App](#deploying-your-app)
-- [Add Airtable Authentication & token](#add-airtable-authentication-&-token)
+- [Add Airtable Authentication & token](#add-airtable-authentication--token)
 - [Viewing Activity Logs](#viewing-activity-logs)
 - [Project Structure](#project-structure)
 - [Resources](#resources)
